@@ -123,8 +123,20 @@ router.patch("/:id", async (req, res, next) => {
  * ? Should delete a character and respond with a success or
  * ? error message
  */
-router.delete("/:id", (req, res, next) => {
-    /**Your code goes here */
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const characterId = req.params.id;
+
+        if (!mongoose.isValidObjectId(characterId)) {
+            return res.status(400).send("Invalid Character id");
+        }
+
+        const character = await Character.findByIdAndDelete(characterId);
+
+        res.status(204).send();
+    } catch (error) {
+        next(error);
+    }
 });
 
 module.exports = router;

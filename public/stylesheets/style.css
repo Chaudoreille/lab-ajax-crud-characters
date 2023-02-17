@@ -71,12 +71,18 @@ button {
   text-align: left;
   border: solid white 2px;
   border-radius: 20px;
+  overflow: hidden;
+}
+
+.character-info:hover {
+  overflow: visible;
 }
 
 .character-info div span {
   color: #d8b362;
   position: absolute;
   left: 50%;
+  width: max-content;
 }
 
 .form-container {

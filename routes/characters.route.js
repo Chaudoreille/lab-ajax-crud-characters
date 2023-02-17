@@ -115,7 +115,7 @@ router.delete("/:id", paramIdValidator, async (req, res, next) => {
         if (!deletedCharacter) {
             return res.status(400).send("Invalid Character id");
         }
-        res.status(204).send(deletedCharacter);
+        res.status(204).send();
     } catch (error) {
         next(error);
     }

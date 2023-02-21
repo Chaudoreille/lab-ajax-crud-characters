@@ -7,6 +7,15 @@ const characterContainer = document.querySelector(".characters-container");
 const apiUrl = "api/characters";
 const fetchOneIdInput = document.querySelector("input[name=character-name]");
 const deleteIdInput = document.querySelector("input[name=character-id-delete]");
+const editId = document.querySelector(
+    '#edit-character-form input[name="chr-id"]'
+);
+const editName = document.querySelector(
+    '#edit-character-form input[name="name"]'
+);
+const editOccupation = document.querySelector(
+    '#edit-character-form input[name="occupation"]'
+);
 
 function fillCharacter(domCharacterInfo, data) {
     const charInfo = domCharacterInfo.querySelector(".character-info");
@@ -69,14 +78,12 @@ document
             const id = deleteIdInput.value;
             const response = await axios.delete(`${apiUrl}/${id}`);
 
-            if (response.status === 204) {
-                document
-                    .querySelectorAll(`.character-info[data-id="${id}"]`)
-                    .forEach((deletedCharacter) => {
-                        deletedCharacter.remove();
-                    });
-                deleteIdInput.value = "";
-            }
+            document
+                .querySelectorAll(`.character-info[data-id="${id}"]`)
+                .forEach((deletedCharacter) => {
+                    deletedCharacter.remove();
+                });
+            deleteIdInput.value = "";
         } catch (error) {
             console.log(error);
         }
